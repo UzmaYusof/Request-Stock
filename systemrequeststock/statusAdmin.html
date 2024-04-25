@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page - Request Approval</title>
+    <!-- Add necessary meta tags, styles, and scripts -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .header {
+            background-color: purple;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav-right {
+            float: right;
+        }
+		
+        .footer {
+            background-color: purple;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }	        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="fcom.png" alt="Company Logo" width="67" height="64">
+        FCOM Request Stock System || ADMIN</div>
+        <nav class="topnav">
+            <a href="hAdmin.html">Home</a>
+            <a href="stockAdmin.html">Stock</a>
+            <a class="active" href="statusAdmin.html">Approve</a>
+            <div class="topnav-right">
+                <a href="Index.html">Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Request Approval</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="requestedItemsTable">
+                <!-- Display requested items here -->
+            </tbody>
+        </table>
+    </div>
+    
+</div>
+<p>&nbsp;</p>
+<footer class="footer">
+  <p>&copy; 2023 FCOM Request Stock System. All rights reserved.</p>
+</footer>
+
+    <script>
+        // Sample requested items (replace with actual data)
+        let requestedItems = [
+            { id: 1, itemName: "INK PRINTER", quantity: 7, status: "Requested" },
+            { id: 2, itemName: "A4/ COPY PAPER", quantity: 11, status: "Requested" },
+            // Add more items as needed
+        ];
+
+        // Function to display requested items
+        function displayRequestedItems() {
+            const requestedItemsTable = document.getElementById("requestedItemsTable");
+            requestedItemsTable.innerHTML = ""; // Clear previous content
+
+            requestedItems.forEach(item => {
+                const row = `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td>${item.itemName}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.status}</td>
+                        <td>
+                            <button onclick="approveItem(${item.id})">Accept</button>
+                            <button onclick="declineItem(${item.id})">Decline</button>
+                        </td>
+                    </tr>
+                `;
+                requestedItemsTable.innerHTML += row;
+            });
+        }
+
+        // Function to approve an item
+        function approveItem(id) {
+            const item = requestedItems.find(item => item.id === id);
+            if (item) {
+                item.status = "Approved";
+                // You can send an AJAX request to update the status on the server here
+                // For simplicity, we'll just refresh the displayed items
+                displayRequestedItems();
+            }
+        }
+
+        // Function to decline an item
+        function declineItem(id) {
+            const item = requestedItems.find(item => item.id === id);
+            if (item) {
+                item.status = "Declined";
+                // You can send an AJAX request to update the status on the server here
+                // For simplicity, we'll just refresh the displayed items
+                displayRequestedItems();
+            }
+        }
+
+        // Call the function to display requested items on page load
+        displayRequestedItems();
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Item Request System</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #d7bde2;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-box {
+            width: 45%;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .form-box h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #6c3483;
+        }
+
+        .form-box label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-box input[type="text"],
+        .form-box input[type="email"],
+        .form-box input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .form-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: #6c3483;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .form-box button:hover {
+            background-color: #5a2a67;
+        }
+
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            background-color: purple;
+            padding: 20px;
+        }
+
+        .copyright p a {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+<h1 align="center">Welcome to, FCOM Request Stock System.</h1>
+</header>
+    <div class="container">
+  <div class="form-box">
+            <h2 align="center">Login</h2>
+  <form action="homepage.html" method="get">
+    <label for="username">Username:</label>
+                <input type="text" id="username" name="username" />
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" />
+
+    <button type="submit">Login</button>
+    </form>
+    <p>&nbsp;</p>
+  <p>Don't have an account? <a href="signup.html">Signup</a></p>
+        <p>&nbsp;</p>
+</div>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+ <div class="form-box">
+        <h2>Admin</h2>
+        <form action="hAdmin.html" method="get">
+            <label for="id">Username:</label>
+            <input type="text" id="id" />
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" />
+
+            <button type="submit">Login Admin</button>
+        </form>
+    </div>
+</div>
+
+    <footer class="footer">
+        <p>&copy; 2023 FCOM Request Stock System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

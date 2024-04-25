@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fcom Request Stock System - Request Stock</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .header {
+            background-color: purple;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav-right {
+            float: right;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .footer {
+            background-color: purple;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="fcom.png" alt="Company Logo" width="67" height="64">
+        FCOM Request Stock System</div>
+        <nav class="topnav">
+            <a href="homepage.html">Home</a>
+            <a class="active" href="request-stock.html">Request Stock</a>
+            <div class="topnav-right">
+                <a href="Index.html">Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Request Stock</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Available</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>INK PRINTER</td>
+                    <td><span id="inkPrinterAvailable" class="number">100</span></td>
+                    <td>93</td>
+                    <td><button onclick="addToCart('INK PRINTER')">Add to Cart</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>A4/ COPY PAPER</td>
+                    <td><span class="number">50</span></td>
+                    <td>39</td>
+ <td><button onclick="addToCart('A4/ COPY PAPER')">Add to Cart</button></td>
+
+      </tr>
+                <tr>
+                    <td height="68">3</td>
+                    <td>STAPLERS &amp; STAPLES SMALL</td>
+                    <td>23</td>
+                    <td>&nbsp;</td>
+ <td><button onclick="addToCart('STAPLERS &amp; STAPLES')">Add to Cart</button></td>
+                </tr>
+      
+                <tr>
+                    <td>4</td>
+                    <td>BALL PEN</td>
+                    <td>100</td>
+                    <td>&nbsp;</td>
+ <td><button onclick="addToCart('BALL PEN')">Add to Cart</button></td>
+                </tr>
+      
+                <tr>
+                    <td>5</td>
+                    <td>TAPE BLACK</td>
+                    <td>70</td>
+                    <td>&nbsp;</td>
+ <td><button onclick="addToCart('TAPE')">Add to Cart</button></td>
+                </tr>
+    
+                <tr>
+                    <td>6</td>
+                    <td>ARCH FILE/FILE ORGANIZER</td>
+                    <td><span class="number">70</span></td>
+                    <td>&nbsp;</td>
+ <td><button onclick="addToCart('ARCH FILE/FILE ORGANIZER')">Add to Cart</button></td>
+                </tr>
+      
+                <tr>
+                    <td>7</td>
+                    <td>PAPER TRAYS</td>
+                    <td><span class="number">50</span></td>
+                    <td>&nbsp;</td>
+ <td><button onclick="addToCart('PAPER TRAYS')">Add to Cart</button></td>
+                </tr>
+      
+                <tr>
+                    <td>8</td>
+                    <td>MARKERS BLUE</td>
+                    <td><span class="number">300</span></td>
+                    <td>&nbsp;</td>
+ <td><button onclick="addToCart('MARKERS')">Add to Cart</button></td>
+  </tr>
+      
+                <tr>
+                    <td>9</td>
+                    <td>CLIP PAPER </td>
+                    <td>25</td>
+                    <td>&nbsp;</td>
+ <td><button onclick="addToCart('PAPER TRAYS')">Add to Cart</button></td>
+                </tr>
+                 </tr>
+      
+                <tr>
+                    <td>10</td>
+                    <td>INK STAMP</td>
+                    <td><span class="number">10</span></td>
+                    <td>&nbsp;</td>
+ <td><button onclick="addToCart('PAPER TRAYS')">Add to Cart</button></td>
+                </tr>
+                 </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="status"></div>
+
+    <footer class="footer">
+        <p>&copy; 2023 FCOM Request Stock System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let requestedItems = []; // Array to store requested items
+
+        // Function to handle the "Add to Cart" button click event
+        function addToCart(itemName) {
+            // Prompt the user to enter the quantity
+            const quantity = prompt(`Enter quantity for ${itemName}:`);
+
+            // Add the item and quantity to the requestedItems array
+            requestedItems.push({ itemName, quantity });
+
+            // Display status message
+            const statusElement = document.getElementById("status");
+            statusElement.innerHTML = `Adding ${itemName} (${quantity} units) to cart...`;
+
+            // Simulate a request to add the item to the cart
+            setTimeout(() => {
+                statusElement.innerHTML = `${itemName} (${quantity} units) added to cart.`;
+
+                // Display the table showing the status of requests for each item
+                displayRequestStatus();
+            }, 1000); // Simulated delay of 1 second
+        }
+
+        // Function to display the table showing the status of requests for each item
+        function displayRequestStatus() {
+            // Create the status table HTML
+            let statusTableHTML = `
+                <h2>Status of Requests</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            // Iterate over requestedItems array and add rows to the table
+            requestedItems.forEach(({ itemName, quantity }) => {
+                statusTableHTML += `
+                    <tr>
+                        <td>${itemName}</td>
+                        <td>${quantity}</td>
+                        <td>Requested</td>
+                    </tr>
+                `;
+            });
+
+            // Close the table HTML
+            statusTableHTML += `
+                    </tbody>
+                </table>
+            `;
+
+            // Update the HTML to include the status table
+            document.getElementById("status").innerHTML = statusTableHTML;
+        }
+		// Function to handle the "Add to Cart" button click event
+function addToCart(itemName) {
+    // Prompt the user to enter the quantity
+    const quantity = prompt(`Enter quantity for ${itemName}:`);
+
+    // Add the item and quantity to the requestedItems array
+    requestedItems.push({ itemName, quantity });
+
+    // Display status message
+    const statusElement = document.getElementById("status");
+    statusElement.innerHTML = `Adding ${itemName} (${quantity} units) to cart...`;
+
+    // Send data to the server using AJAX
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "save_request.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            // Handle the server response if needed
+            console.log(xhr.responseText);
+        }
+    };
+    xhr.send(JSON.stringify({ itemName, quantity }));
+
+    // Simulate a request to add the item to the cart
+    setTimeout(() => {
+        statusElement.innerHTML = `${itemName} (${quantity} units) added to cart.`;
+
+        // Display the table showing the status of requests for each item
+        displayRequestStatus();
+    }, 1000); // Simulated delay of 1 second
+}
+
+    </script>
+</body>
+</html>

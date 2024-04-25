@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Data Viewer</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 15px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>View Stock</h1>
+  <table id="stockDataTable">
+    <thead>
+      <tr>
+          <th>Bil</th>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Stock</th>
+          <th>Out</th>
+          <th>Available</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <script>
+    // Sample stock data
+    const stockData = [
+{ bil: 1, name: ‘INK PRINTER’, quantity: 100, stock: 30, out: 30, available: 70 },
+{ bil: 2, name: ‘A4/ COPY PAPER, quantity: 50, stock: 5, out: 5, available: 45 },
+{ bil: 3, name: ‘STAPLERS & STAPLES, quantity: 15, stock: 3, out: 3, available: 12 },
+{ bil: 4, name: ‘BALL PEN, quantity: 100, stock: 20, out: 20, available: 80 },
+{ bil: 5, name: ‘TAPE, quantity: 45, stock: 10, out: 10, available: 35 },
+{ bil: 6, name: ‘ARCH FILE/FILE ORGANIZER, quantity: 70, stock: 7, out: 7, available: 63 },
+{ bil: 7, name: ‘PAPER TRAYS, quantity: 50, stock: 5, out: 5, available: 45 },
+{ bil: 8, name: ‘MARKERS, quantity: 100, stock: 9, out: 9, available: 91 },
+
+    ];
+
+    // Function to create a row in the table
+    function createRow(data) {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${data.bil}</td>
+        <td>${data.name}</td>
+        <td>${data.quantity}</td>
+		<td>${data.stock}</td>
+        <td>${data.out}</td>
+        <td>${data.available}</td>
+      `;
+      return row;
+    }
+
+    // Function to add stock data to the table
+    function addStockDataToTable(data) {
+      const tableBody = document.querySelector('#stockDataTable tbody');
+      data.forEach(item => {
+        const row = createRow(item);
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Add sample data to the table
+    addStockDataToTable(stockData);
+  </script>
+</body>
+</html>

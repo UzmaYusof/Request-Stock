@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fcom Request Stock System - Request Stock</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS styles -->
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Stock</h2>
+        <form id="addItemForm">
+            <input type="text" id="itemName" placeholder="Item Name" required>
+            <input type="number" id="itemQuantity" placeholder="Quantity" required>
+            <button type="submit">Add Item</button>
+            <p>&nbsp;</p>
+        </form>
+        <!-- Table to display existing items -->
+        <table>
+            <!-- Table header -->
+            <thead>
+                <!-- Table header row -->
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <!-- Table body -->
+            <tbody id="itemList">
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+        <p>&nbsp;</p>
+    </div>
+
+    <!-- JavaScript code -->
+    <script>
+        // Function to fetch items from the database
+        function fetchItems() {
+            // AJAX request to fetch items from the server
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "fetch_items.php", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // On success, update the table with fetched items
+                    document.getElementById("itemList").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+
+        // Fetch items when the page loads
+        fetchItems();
+
+        // Function to handle form submission to add a new item
+        document.getElementById("addItemForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get the form data
+            var itemName = document.getElementById("itemName").value;
+            var itemQuantity = document.getElementById("itemQuantity").value;
+
+            // AJAX request to add the new item
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "add_item.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // On success, fetch and update the table with latest items
+                    fetchItems();
+                }
+            };
+            xhr.send("itemName=" + itemName + "&itemQuantity=" + itemQuantity);
+
+            // Clear the form fields
+            document.getElementById("itemName").value = "";
+            document.getElementById("itemQuantity").value = "";
+        });
+    </script>
+</body>
+</html>

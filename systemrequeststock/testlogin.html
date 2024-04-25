@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fcom Request Stock System - Request Stock</title>
+    <!-- CSS styles -->
+    <!-- Your CSS styles here -->
+</head>
+<body>
+    <header>
+        <h1 align="center">Welcome to FCOM Request Stock System</h1>
+    </header>
+    <div class="container">
+        <div class="form-box">
+            <h2 align="center">Login</h2>
+            <form action="db_connection.php" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" />
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" />
+
+                <button type="submit" name="login">Login</button>
+            </form>
+            <p>&nbsp;</p>
+            <p>Don't have an account? <a href="signup.html">Signup</a></p>
+            <p>&nbsp;</p>
+        </div>
+        <div class="form-box">
+            <h2>Admin</h2>
+            <form action="hAdmin.html" method="post">
+                <label for="id">Username:</label>
+                <input type="text" id="id" name="id" />
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" />
+
+                <button type="submit" name="login">Login Admin</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2023 FCOM Request Stock System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Request</title>
+</head>
+<body>
+  <h1>Stock Request</h1>
+
+  <form action="" method="post">
+    <label for="stock">Choose Stock:</label>
+    <select name="stock" id="stock">
+      <option value="stock1">Stock 1</option>
+      <option value="stock2">Stock 2</option>
+      <option value="stock3">Stock 3</option>
+    </select>
+    <input type="submit" name="add_to_cart" value="Add to Cart">
+  </form>
+
+  <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])): ?>
+    <h2>Cart</h2>
+    <ul>
+      <?php foreach ($_SESSION['cart'] as $stock): ?>
+        <li><?= htmlspecialchars($stock) ?></li>
+      <?php endforeach; ?>
+    </ul>
+  <?php endif; ?>
+
+  <?php if (isset($_POST['add_to_cart'])): ?>
+    <?php
+    // Add the selected stock to the cart
+    if (!isset($_SESSION['cart'])) {
+      $_SESSION['cart'] = array();
+    }
+    $_SESSION['cart'][] = htmlspecialchars($_POST['stock']);
+    ?>
+    <p>The selected stock has been added to the cart.</p>
+  <?php endif; ?>
+
+</body>
+</html>
+
+
+
+
+<div class="cart">
+  <h2>Cart</h2>
+  <?php if (isset($_SESSION['cart'])): ?>
+    <ul>
+      <?php foreach ($_SESSION['cart'] as $stock): ?>
+        <li><?= htmlspecialchars($stock) ?></li>
+      <?php endforeach; ?>
+    </ul>
+  <?php else: ?>
+    <p>Your cart is empty.</p>
+  <?php endif; ?>
+</div>
+<?php
+// Start the session
+session_start();
+
+// Check if the 'cart' session variable is set and not empty
+if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+    // Loop through each item in the 'cart' session variable
+    foreach($_SESSION['cart'] as $item) {
+        // Display the selected stock information
+        echo "Product ID: " . $item['product_id'] . "<br>";
+        echo "Product Name: " . $item['product_name'] . "<br>";
+        echo "Quantity: " . $item['quantity'] . "<br>";
+        echo "Price: $" . $item['price'] . "<br><br>";
+    }
+} else {
+    // If the cart is empty, display a message
+    echo "Your cart is empty.";
+}
+?>
